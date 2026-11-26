@@ -1,40 +1,48 @@
 #include <stdio.h>
 
-int main()
+void bub_sort(int *array, int n)
 {
-    int n, first = 0, second = 1, next;
+    int i, j, temp;
 
-    printf("Enter the number of terms: ");
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = 0; j < n - 1 - i; j++)
+        {
+            if (*(array + j) > *(array + j + 1))
+            {
+                temp = *(array + j);
+                *(array + j) = *(array + j + 1);
+                *(array + j + 1) = temp;
+            }
+        }
+    }
+}
+
+int main(void)
+{
+    int array[25], n, i;
+
+    repeat:
+    printf("\nEnter number of elements to sort: ");
     scanf("%d", &n);
 
-    if(n <= 0)
+    if (n > 25 || n <= 0)
     {
-        printf("Please enter a positive integer.\n");
-        return 1;
+        printf("\nEnter a maximum count of 25...!");
+        goto repeat;
     }
 
-    printf("Fibonacci Sequence:\n");
+    printf("Enter %d elements:\n", n);
 
-    for(int i = 1; i <= n; i++)
-    {
-        if(i == 1)
-        {
-            printf("%d\n", first);
-            continue;
-        }
+    for (i = 0; i < n; i++)
+        scanf("%d", &array[i]);
 
-        if(i == 2)
-        {
-            printf("%d\n", second);
-            continue;
-        }
+    bub_sort(array, n);
 
-        next = first + second;
-        first = second;
-        second = next;
+    printf("\nSorted elements are:\n");
 
-        printf("%d\n", next);
-    }
+    for (i = 0; i < n; i++)
+        printf("%d ", array[i]);
 
     return 0;
 }
