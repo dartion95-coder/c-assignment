@@ -2,26 +2,28 @@
 
 int main(void)
 {
-    int arr[100], n, i;
+    int arr[100], i, n;
     int *ptr;
+
+    ptr = arr;
 
     printf("Enter number of elements: ");
     scanf("%d", &n);
 
-    ptr = arr;  // Pointer points to the first element of the array
+    printf("Enter %d elements: ", n);
 
-    printf("Enter %d elements:\n", n);
-
+    // Reading elements using POINTERS
     for (i = 0; i < n; i++)
     {
-        scanf("%d", ptr + i);  // Reading using pointer
+        scanf("%d", ptr + i);
     }
 
-    printf("\nArray elements are:\n");
+    printf("Elements in reverse order:\n");
 
-    for (i = 0; i < n; i++)
+    // Printing elements in reverse using POINTERS
+    for (i = n - 1; i >= 0; i--)
     {
-        printf("%d ", arr[i]);  // Displaying using array indexing
+        printf("%d ", *(ptr + i));
     }
 
     printf("\n");
